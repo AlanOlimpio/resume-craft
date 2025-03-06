@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 import Logo from "@/assets/logo.svg";
 import { NavItems } from "@/components/pages/dashboard/nav-items";
 import { UserDropdown } from "@/components/pages/dashboard/user-dropdown";
+import { ModeToggle } from "@/components/shared/theme-toggle";
 type DashboardLayoutProps = {
   children: ReactNode;
 };
@@ -15,11 +16,14 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           <Logo className="max-w-[100px] mx-auto" />
         </div>
         <NavItems />
-        <div className="w-full mt-auto border-t border-muted px-3 py-4">
+        <div className="w-full mt-auto border-t border-muted px-3 py-4 flex justify-between gap-4">
           <UserDropdown />
+          <ModeToggle />
         </div>
       </aside>
-      <main>{children}</main>
+      <main className="p-6 flex flex-col w-full h-full overflow-auto">
+        {children}
+      </main>
     </div>
   );
 }
