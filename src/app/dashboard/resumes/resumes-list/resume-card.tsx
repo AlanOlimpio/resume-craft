@@ -22,7 +22,7 @@ export function ResumesCardButton({
       )}
     >
       {icon}
-      <span className="absolute w-full left-0 bottom-0 p-3 text-left bg-gradient-to-t from-background/90">
+      <span className="absolute w-full left-0 bottom-0 p-3 text-left bg-gradient-to-t from-background/90 text-wrap">
         <p className="text-sm font-semibold font-title">{title}</p>
         <span className="block text-xs text-muted-foreground">
           {description}
