@@ -14,6 +14,7 @@ export function InputField({ label, name, ...props }: InputFieldProps) {
     <Controller
       control={control}
       name={name}
+      defaultValue={""}
       render={({ field, fieldState }) => (
         <FieldWrapper label={label}>
           <Input {...props} {...field} />

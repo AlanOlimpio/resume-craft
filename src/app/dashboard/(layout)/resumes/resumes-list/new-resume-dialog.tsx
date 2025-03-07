@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { BaseDialogPros, Dialog } from "@/components/ui/dialog";
 import { InputField } from "@/components/ui/input";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm, Resolver, FormProvider } from "react-hook-form";
 
 type FormData = {
@@ -30,6 +30,7 @@ export function NewResumeDialog(props: BaseDialogPros) {
 
   function onSubmit(data: FormData) {
     console.log(data);
+    methods.reset();
   }
 
   return (
