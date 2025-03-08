@@ -1,28 +1,22 @@
-import { Controller, useFormContext } from "react-hook-form";
-import { Input } from "./input";
-import { ComponentProps } from "react";
-import { FieldWrapper } from "../field-wrapper";
-type InputFieldProps = ComponentProps<typeof Input> & {
-  label: string;
-  name: string;
-};
+import * as React from "react";
 
-export function InputField({ label, name, ...props }: InputFieldProps) {
-  const { control } = useFormContext();
+import { cn } from "@/lib/utils";
 
-  return (
-    <Controller
-      control={control}
-      name={name}
-      defaultValue={""}
-      render={({ field, fieldState }) => (
-        <FieldWrapper label={label}>
-          <Input {...props} {...field} />
-          {fieldState.error && (
-            <p className="text-sm text-red-500">{fieldState.error.message}</p>
-          )}
-        </FieldWrapper>
-      )}
-    />
-  );
-}
+const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
+  ({ className, type, ...props }, ref) => {
+    return (
+      <input
+        type={type}
+        className={cn(
+          "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+          className
+        )}
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
+Input.displayName = "Input";
+
+export { Input };
