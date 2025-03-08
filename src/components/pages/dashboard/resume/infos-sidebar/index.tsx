@@ -2,6 +2,7 @@ import Link from "next/link";
 import Logo from "@/assets/logo.svg";
 import { IaGenerationDropdown } from "./ia-generation-dropdown";
 import { Separator } from "@/components/ui/separator";
+import { BasicInfoSection } from "./sections/basic-info";
 
 export function InfosSidebar() {
   return (
@@ -13,6 +14,7 @@ export function InfosSidebar() {
         <IaGenerationDropdown />
       </div>
       <Separator className="my-5" />
+      <BasicInfoSection />
     </aside>
   );
 }
