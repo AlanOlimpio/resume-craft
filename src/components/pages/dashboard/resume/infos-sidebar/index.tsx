@@ -3,6 +3,7 @@ import Logo from "@/assets/logo.svg";
 import { IaGenerationDropdown } from "./ia-generation-dropdown";
 import { Separator } from "@/components/ui/separator";
 import { BasicInfoSection } from "./sections/basic-info";
+import { SummarySection } from "./sections/summary";
 
 export function InfosSidebar() {
   return (
@@ -15,6 +16,8 @@ export function InfosSidebar() {
       </div>
       <Separator className="my-5" />
       <BasicInfoSection />
+      <Separator className="my-5" />
+      <SummarySection />
     </aside>
   );
 }
