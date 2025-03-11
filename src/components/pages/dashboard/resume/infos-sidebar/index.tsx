@@ -4,6 +4,7 @@ import { IaGenerationDropdown } from "./ia-generation-dropdown";
 import { Separator } from "@/components/ui/separator";
 import { BasicInfoSection } from "./sections/basic-info";
 import { SummarySection } from "./sections/summary";
+import { MultiplesSection } from "./sections/multiples";
 
 export function InfosSidebar() {
   return (
@@ -18,6 +19,7 @@ export function InfosSidebar() {
       <BasicInfoSection />
       <Separator className="my-5" />
       <SummarySection />
+      <MultiplesSection />
     </aside>
   );
 }

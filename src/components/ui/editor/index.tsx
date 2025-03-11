@@ -34,13 +34,14 @@ export function Editor({ value, onChage, className }: EditorProps) {
       }),
     ],
     content: value,
+    immediatelyRender: false,
     editorProps: {
       attributes: {
         class: "focus:outline-none h-full -p4",
       },
     },
     onCreate({ editor }) {
-      onChage?.(editor.getHTML());
+      onChage?.(editor?.getHTML());
     },
     autofocus: false,
   });

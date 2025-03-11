@@ -1,6 +1,6 @@
-import { ScrollText, UserRound } from "lucide-react";
+"use client";
+import { ScrollText } from "lucide-react";
 import { SectionTitle } from "./section-title";
-import { InputField } from "@/components/ui/input/field";
 import { Controller, useFormContext } from "react-hook-form";
 import { Editor } from "@/components/ui/editor";
 
