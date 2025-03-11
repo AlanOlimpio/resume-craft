@@ -9,6 +9,7 @@ import {
 } from "@hello-pangea/dnd";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { Tooltip } from "@/components/ui/tooltip";
 
 export type ResumeArrayKeys = Exclude<
   keyof ResumeContentData,
@@ -95,14 +96,16 @@ export function MultipleDragList({
                             >
                               <GripVertical size={14} />
                             </div>
-                            <div className="flex-1 flex flex-col justify-start p-2 overflow-auto cursor-pointer hover:bg-muted/80 transition-all">
-                              <p className="text-sm font-title font-bold">
-                                {field[titleKey]}
-                              </p>
-                              <p className="text-xs text-muted-foreground p-2 break-words">
-                                {field[descriptionKey]}
-                              </p>
-                            </div>
+                            <Tooltip content="Clique para editar">
+                              <div className="flex-1 flex flex-col justify-start p-2 overflow-auto cursor-pointer hover:bg-muted/80 transition-all">
+                                <p className="text-sm font-title font-bold">
+                                  {field[titleKey]}
+                                </p>
+                                <p className="text-xs text-muted-foreground p-2 break-words">
+                                  {field[descriptionKey]}
+                                </p>
+                              </div>
+                            </Tooltip>
                           </div>
                         )}
                       </Draggable>
@@ -113,6 +116,16 @@ export function MultipleDragList({
               )}
             </Droppable>
           </DragDropContext>
+        )}
+        {!isEmpty && (
+          <Button
+            variant="ghost"
+            className="w-max gap-2 ml-auto mt-4"
+            onClick={onAdd}
+          >
+            <Plus size={24} />
+            Adicionar item
+          </Button>
         )}
       </div>
     </div>
