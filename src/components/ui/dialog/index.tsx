@@ -34,7 +34,11 @@ export function Dialog({
       <DialogContent>
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
-          {description && <DialogDescription>{description}</DialogDescription>}
+          {description ? (
+            <DialogDescription>{description}</DialogDescription>
+          ) : (
+            <DialogDescription />
+          )}
         </DialogHeader>
         {content}
       </DialogContent>

@@ -31,26 +31,7 @@ export default function ResumePage() {
       languages: [],
       projects: [],
       skills: [],
-      socialMedias: [
-        {
-          icon: "",
-          name: "teste 1",
-          url: "teste 1",
-          username: "alancleyton.olimpio@gmail.com",
-        },
-        {
-          icon: "",
-          name: "teste 2",
-          url: "teste 1",
-          username: "teste 1",
-        },
-        {
-          icon: "",
-          name: "teste 3",
-          url: "teste 3",
-          username: "teste 3",
-        },
-      ],
+      socialMedias: [],
     },
   };
 
