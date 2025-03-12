@@ -29,7 +29,6 @@ export function NewResumeDialog(props: BaseDialogPros) {
   const methods = useForm<FormData>({ resolver });
 
   function onSubmit(data: FormData) {
-    console.log(data);
     methods.reset();
   }
 

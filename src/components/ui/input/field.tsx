@@ -28,6 +28,7 @@ export function InputField({
           label={label}
           className={containerClassName}
           error={fieldState?.error}
+          ref={null}
         >
           <Input {...props} {...field} />
           {extraContent && extraContent(field.value)}

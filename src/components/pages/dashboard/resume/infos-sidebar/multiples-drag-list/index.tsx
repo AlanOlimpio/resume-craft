@@ -44,7 +44,6 @@ export function MultipleDragList({
   function handleDrag({ source, destination }: DropResult) {
     if (!destination) return;
     move(source.index, destination.index);
-    console.log(fields);
   }
   const isEmpty = fields.length === 0;
 
@@ -97,7 +96,10 @@ export function MultipleDragList({
                               <GripVertical size={14} />
                             </div>
                             <Tooltip content="Clique para editar">
-                              <div className="flex-1 flex flex-col justify-start p-2 overflow-auto cursor-pointer hover:bg-muted/80 transition-all">
+                              <div
+                                onClick={() => onEdit(index)}
+                                className="flex-1 flex flex-col justify-start p-2 overflow-auto cursor-pointer hover:bg-muted/80 transition-all"
+                              >
                                 <p className="text-sm font-title font-bold">
                                   {field[titleKey]}
                                 </p>

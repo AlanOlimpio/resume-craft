@@ -11,9 +11,14 @@ import {
 import { Fragment, useState } from "react";
 import { MultipleDragItemData, MultipleDragList } from "../multiples-drag-list";
 import { ManageMultipleItemDailog } from "../multiples-drag-list/manage-multiple-item-dailog";
+import { useFormContext } from "react-hook-form";
 
 export function MultiplesSection() {
+  const { getValues } = useFormContext();
   const [sectionToAdd, setSectionToAdd] = useState<MultipleDragItemData | null>(
+    null
+  );
+  const [initialData, setInitialData] = useState<MultipleDragItemData | null>(
     null
   );
   const sectionsKeys: MultipleDragItemData[] = [
@@ -67,6 +72,14 @@ export function MultiplesSection() {
       descriptionKey: "description",
     },
   ];
+
+  function onEdit(section: MultipleDragItemData, index: number) {
+    const currentValues = getValues();
+    const currentItems = currentValues.content[section.formKey];
+    setSectionToAdd(section);
+    setInitialData(currentItems[index]);
+  }
+
   return (
     <div>
       {sectionsKeys.map((section) => (
@@ -75,7 +88,7 @@ export function MultiplesSection() {
           <MultipleDragList
             data={section}
             onAdd={() => setSectionToAdd(section)}
-            onEdit={(index) => {}}
+            onEdit={(index) => onEdit(section, index)}
           />
         </Fragment>
       ))}
@@ -85,7 +98,9 @@ export function MultiplesSection() {
           open={!!sectionToAdd}
           setOpen={(value) => {
             if (!value) setSectionToAdd(null);
+            setInitialData(null);
           }}
+          initialData={initialData}
         />
       )}
     </div>

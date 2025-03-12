@@ -9,11 +9,12 @@ import { MenuBar } from "./menu-bar";
 
 type EditorProps = {
   value: string;
-  onChage?: (value: string) => void;
+  onChange?: (value: string) => void;
   className?: string;
+  ref?: null;
 };
 
-export function Editor({ value, onChage, className }: EditorProps) {
+export function Editor({ value, onChange, className, ref }: EditorProps) {
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -41,7 +42,10 @@ export function Editor({ value, onChage, className }: EditorProps) {
       },
     },
     onCreate({ editor }) {
-      onChage?.(editor?.getHTML());
+      onChange?.(editor?.getHTML());
+    },
+    onUpdate({ editor }) {
+      onChange?.(editor.getHTML());
     },
     autofocus: false,
   });
@@ -53,8 +57,8 @@ export function Editor({ value, onChage, className }: EditorProps) {
       )}
     >
       <MenuBar editor={editor} />
-      <div className="h-full [&>div]:h-full p-2 flex flex-col overflow-x-auto">
-        <EditorContent editor={editor} />
+      <div className="h-full [&>div]:h-full p-2 flex flex-col overflow-x-auto max-h-[200px]">
+        <EditorContent editor={editor} ref={ref} />
       </div>
     </div>
   );

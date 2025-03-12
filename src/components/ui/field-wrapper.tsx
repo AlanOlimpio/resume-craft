@@ -8,15 +8,17 @@ type FieldWrapperProps = {
   children: ReactNode;
   className?: string;
   error?: FieldError;
+  ref: null;
 };
 export function FieldWrapper({
   label,
   children,
   className,
   error,
+  ref,
 }: FieldWrapperProps) {
   return (
-    <div className={cn("flex flex-col gap-2", className)}>
+    <div className={cn("flex flex-col gap-2", className)} ref={ref}>
       <Label>{label}</Label>
       {children}
       {error && <p className="text-sm text-red-500">{error.message}</p>}

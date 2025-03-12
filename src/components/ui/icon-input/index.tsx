@@ -5,8 +5,14 @@ export interface IconInputProps {
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
+  ref: null;
 }
-export function IconInput({ onChange, placeholder, value }: IconInputProps) {
+export function IconInput({
+  onChange,
+  placeholder,
+  value,
+  ref,
+}: IconInputProps) {
   const debouncedValue = useDebounce(value);
   return (
     <div className="flex items-center gap-2">
@@ -22,6 +28,7 @@ export function IconInput({ onChange, placeholder, value }: IconInputProps) {
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
+        ref={ref}
       />
     </div>
   );

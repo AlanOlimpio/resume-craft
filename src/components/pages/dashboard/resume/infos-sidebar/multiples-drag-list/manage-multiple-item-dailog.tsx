@@ -3,7 +3,7 @@
 import { Dialog, BaseDialogPros } from "@/components/ui/dialog";
 import { MultipleDragItemData, ResumeArrayKeys } from ".";
 import { FormProvider, useForm, useFormContext } from "react-hook-form";
-import { Fragment, useMemo } from "react";
+import { Fragment, useEffect, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { InputField } from "@/components/ui/input/field";
@@ -18,6 +18,7 @@ import { toast } from "sonner";
 type ManageMultipleItemDailogProps = BaseDialogPros & {
   data: MultipleDragItemData;
   setOpen: (open: boolean) => void;
+  initialData: any;
 };
 
 type formConfigProps<T> = {
@@ -240,25 +241,18 @@ export function ManageMultipleItemDailog({
   data,
   open,
   setOpen,
+  initialData,
 }: ManageMultipleItemDailogProps) {
   const methods = useForm();
   const { setValue, getValues } = useFormContext();
 
-  function onSubmit(formaData: any) {
-    const currentValue = getValues();
+  const isEditing = !!initialData;
 
-    const formKey = data.formKey;
-    const currentFieldValue = currentValue.content[formKey] ?? [];
-    setValue(`content.${formKey}`, [
-      ...currentFieldValue,
-      {
-        ...formaData,
-        id: uuid(),
-      },
-    ]);
-    setOpen(false);
-    toast.success("Item adicionado com sucesso!");
-  }
+  useEffect(() => {
+    if (initialData) {
+      methods.reset(initialData);
+    }
+  }, [initialData, methods]);
 
   const formContent = useMemo(() => {
     const config = formConfig[data.formKey];
@@ -270,7 +264,7 @@ export function ManageMultipleItemDailog({
         name: field.key,
         label: field.label,
         containerClassName: cn(isFullWidth && "col-span-full"),
-        require: field.required,
+        required: field.required,
         placeholder: field.placeholder,
         type: field.type,
         className: field.className,
@@ -301,6 +295,49 @@ export function ManageMultipleItemDailog({
     });
   }, []);
 
+  function onDelete() {
+    const currentValue = getValues();
+    const formKey = data.formKey;
+    const currentFieldValue = currentValue.content[formKey] ?? [];
+    const updatedItems = currentFieldValue.filter(
+      (item: any) => item.id !== initialData.id
+    );
+
+    setValue(`content.${formKey}`, updatedItems);
+    setOpen(false);
+
+    toast.success("Item excluído com sucesso!");
+  }
+
+  function onSubmit(formData: any) {
+    const currentValue = getValues();
+
+    const formKey = data.formKey;
+    const currentFieldValue = currentValue.content[formKey] ?? [];
+    if (isEditing) {
+      const updatedItems = currentFieldValue.map((item: any) => {
+        if (item.id === initialData.id) {
+          return formData;
+        }
+        return item;
+      });
+      setValue(`content.${formKey}`, updatedItems);
+      setOpen(false);
+      toast.success("Item atualizado com sucesso!");
+
+      return;
+    }
+    setValue(`content.${formKey}`, [
+      ...currentFieldValue,
+      {
+        ...formData,
+        id: uuid(),
+      },
+    ]);
+    setOpen(false);
+    toast.success("Item adicionado com sucesso!");
+  }
+
   return (
     <Dialog
       open={open}
@@ -316,8 +353,18 @@ export function ManageMultipleItemDailog({
             <FormProvider {...methods}>{formContent}</FormProvider>
           </div>
           <div className="ml-auto flex gap-3">
+            {isEditing && (
+              <Button
+                variant="destructive"
+                onClick={onDelete}
+                className="w-max"
+              >
+                Excluir
+              </Button>
+            )}
+
             <Button type="submit" className="w-max">
-              Adicionar
+              {isEditing ? "Salvar" : "Adicionar"}
             </Button>
           </div>
         </form>

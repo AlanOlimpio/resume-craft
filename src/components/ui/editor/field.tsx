@@ -27,8 +27,9 @@ export function EditorField({
           label={label}
           className={containerClassName}
           error={fieldState?.error}
+          ref={null}
         >
-          <Editor {...props} {...field} />
+          <Editor {...props} {...field} ref={null} />
         </FieldWrapper>
       )}
     />

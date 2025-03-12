@@ -25,8 +25,9 @@ export function IconField({
           label={label}
           className={containerClassName}
           error={fieldState?.error}
+          ref={null}
         >
-          <IconInput {...props} {...field} />
+          <IconInput {...props} {...field} ref={null} />
         </FieldWrapper>
       )}
     />
