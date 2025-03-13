@@ -79,7 +79,42 @@ type ResumeContentData = {
   projects: Partial<ResumeProjectData>[];
 };
 
+type ResumeSections =
+  | "summary"
+  | "socialMedias"
+  | "experiences"
+  | "educations"
+  | "skills"
+  | "languages"
+  | "certifications"
+  | "projects";
+
+type ResumeLoyoutSection = {
+  id?: string;
+  key: ResumeSections;
+};
+
+type ResumeLanguages =
+  | "english"
+  | "french"
+  | "spanish"
+  | "german"
+  | "italian"
+  | "portuguese";
+
+type ResumeStructureData = {
+  template: ResumeTemplates;
+  colorTheme: string;
+  layout: {
+    mainSections: ResumeLoyoutSection[];
+    sidebarSections: ResumeLoyoutSection[];
+  };
+  language: ResumeLanguages;
+};
+
 type ResumeData = {
   content: ResumeContentData;
-  //   structure: ResumeStructureData;
+  structure: ResumeStructureData;
 };
+
+type ResumeTemplates = "eevee" | "onix" | "jynx" | "ditto";
