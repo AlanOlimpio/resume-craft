@@ -89,7 +89,7 @@ type ResumeSections =
   | "certifications"
   | "projects";
 
-type ResumeLoyoutSection = {
+type ResumeLayoutSection = {
   id?: string;
   key: ResumeSections;
 };
@@ -106,8 +106,8 @@ type ResumeStructureData = {
   template: ResumeTemplates;
   colorTheme: string;
   layout: {
-    mainSections: ResumeLoyoutSection[];
-    sidebarSections: ResumeLoyoutSection[];
+    mainSections: ResumeLayoutSection[];
+    sidebarSections: ResumeLayoutSection[];
   };
   language: ResumeLanguages;
 };
