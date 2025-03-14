@@ -1,5 +1,3 @@
-// import { Container } from './styles';
-
 import { Draggable } from "@hello-pangea/dnd";
 import { GripVertical } from "lucide-react";
 import { useFormContext } from "react-hook-form";

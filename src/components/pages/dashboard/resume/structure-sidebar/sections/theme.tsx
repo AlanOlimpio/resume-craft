@@ -12,6 +12,11 @@ const keysToIgnore = [
   "transparent",
   "black",
   "white",
+  "lightBlue",
+  "warmGray",
+  "trueGray",
+  "coolGray",
+  "blueGray",
 ];
 
 const colorKeys = Object.keys(colors).filter(
