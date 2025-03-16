@@ -3,8 +3,12 @@ import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { ResumeTemplate } from "./templates";
 import { TransformControls } from "./controls";
 import { NavigationHeader } from "./header";
+import { useFormContext } from "react-hook-form";
 
 export function ResumeContent() {
+  const { watch } = useFormContext<ResumeData>();
+
+  const data = watch();
   return (
     <section className="w-full h-full p-6 overflow-hidden flex items-center justify-center relative bg-muted dark:bg-background">
       <TransformWrapper
@@ -18,7 +22,7 @@ export function ResumeContent() {
           <NavigationHeader />
           <TransformControls />
           <TransformComponent>
-            <ResumeTemplate />
+            <ResumeTemplate data={data} />
           </TransformComponent>
         </>
       </TransformWrapper>
