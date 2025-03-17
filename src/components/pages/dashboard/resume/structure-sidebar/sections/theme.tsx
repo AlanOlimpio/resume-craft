@@ -41,7 +41,6 @@ export function ThemeSection() {
   }, [currentColorTheme]);
 
   useEffect(() => {
-    console.log(currentColorTheme);
     handleSetCssVariable();
   }, [handleSetCssVariable]);
 
