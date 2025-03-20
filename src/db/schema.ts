@@ -94,7 +94,7 @@ export const authenticators = pgTable(
 );
 
 export const resumes = pgTable("resumes", {
-  id: uuid("id").defaultRandom().notNull(),
+  id: uuid("id").primaryKey().defaultRandom(),
   title: text("title").notNull(),
   data: json("data").default({}).notNull(),
   userId: text("user_id")

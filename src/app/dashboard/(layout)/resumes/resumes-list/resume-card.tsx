@@ -1,7 +1,10 @@
+import { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
+import { ResumeDto } from "@/db/types";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { ReactNode } from "react";
+
+import { formatDistanceToNow } from "date-fns";
 type ResumesCardButton = {
   title: string;
   description: string;
@@ -14,7 +17,7 @@ export function ResumesCardButton({
   description,
 }: ResumesCardButton) {
   return (
-    <Button
+    <div
       className={cn(
         "text-foreground  w-full h-[300px] bg-white hover:bg-gray-200 rounded border border-muted-foreground/20",
         "flex items-center justify-center relative outline-none  overflow-hidden",
@@ -28,15 +31,24 @@ export function ResumesCardButton({
           {description}
         </span>
       </span>
-    </Button>
+    </div>
   );
 }
-export function ResumeCard() {
+
+type ResumeCardProps = {
+  resume: ResumeDto;
+};
+
+export function ResumeCard({ resume }: ResumeCardProps) {
+  const formattedLastUpdate = formatDistanceToNow(new Date(resume.updatedAt), {
+    addSuffix: true,
+  });
+
   return (
-    <Link href="/dashboard/resumes/example" className="block w-full">
+    <Link href={`/dashboard/resumes/${resume.id}`} className="block w-full">
       <ResumesCardButton
-        title="Meu currículo"
-        description="Última atualização há 22 minutos"
+        title={resume.title}
+        description={`Última atualização ${formattedLastUpdate}`}
       />
     </Link>
   );

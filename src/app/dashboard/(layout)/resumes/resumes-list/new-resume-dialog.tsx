@@ -3,9 +3,11 @@
 import { Button } from "@/components/ui/button";
 import { BaseDialogPros, Dialog } from "@/components/ui/dialog";
 import { InputField } from "@/components/ui/input/field";
+import { createResume } from "@/db/actions";
 
-import React, { useEffect } from "react";
+import React from "react";
 import { useForm, Resolver, FormProvider } from "react-hook-form";
+import { toast } from "sonner";
 
 type FormData = {
   title: string;
@@ -28,8 +30,16 @@ const resolver: Resolver<FormData> = async (values) => {
 export function NewResumeDialog(props: BaseDialogPros) {
   const methods = useForm<FormData>({ resolver });
 
-  function onSubmit(data: FormData) {
-    methods.reset();
+  async function onSubmit(data: FormData) {
+    try {
+      const resume = await createResume(data.title);
+      toast.success("Currículo criado com sucesso!");
+      console.log(resume);
+      methods.reset();
+    } catch (error) {
+      console.error(error);
+      toast.error("Erro ao criar o currículo, tente novamente.");
+    }
   }
 
   return (

@@ -1,10 +1,10 @@
-"use client";
+import { buildNextAuthOptions } from "@/app/api/auth/[...nextauth]/route";
 import ResumePage from "@/components/pages/dashboard/resume";
-import { useSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
-export default function DashboardResumePage() {
-  const { data: session } = useSession();
+export default async function DashboardResumePage() {
+  const session = await getServerSession(buildNextAuthOptions);
 
   if (!session) {
     redirect("/auth/login");

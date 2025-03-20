@@ -1,0 +1,1 @@
+ALTER TABLE "resumes" ADD PRIMARY KEY ("id");
