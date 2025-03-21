@@ -1,14 +1,35 @@
 import { buildNextAuthOptions } from "@/app/api/auth/[...nextauth]/route";
 import ResumePage from "@/components/pages/dashboard/resume";
+import { getResumeById } from "@/db/actions";
 import { getServerSession } from "next-auth";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
-export default async function DashboardResumePage() {
+type DashboardResumePageProps = {
+  params: { id: string };
+};
+
+export default async function DashboardResumePage({
+  params,
+}: DashboardResumePageProps) {
   const session = await getServerSession(buildNextAuthOptions);
 
   if (!session) {
     redirect("/auth/login");
   }
 
-  return <ResumePage />;
+  const resumeId = params.id;
+
+  const resume = await getResumeById(resumeId);
+
+  if (!resume) return notFound();
+
+  const initialData = resume.data as ResumeData;
+
+  return (
+    <ResumePage
+      title={resume.title}
+      initialData={initialData}
+      user={session?.user}
+    />
+  );
 }

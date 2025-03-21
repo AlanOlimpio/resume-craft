@@ -8,23 +8,43 @@ import { InfosSidebar } from "./infos-sidebar";
 import { ResumeContent } from "./resume-content";
 import { StructureSidebar } from "./structure-sidebar";
 import { FormProvider, useForm } from "react-hook-form";
+import { User } from "next-auth";
+import { useCallback, useEffect, useRef } from "react";
+import { useDebounce } from "@/hooks/use-debounce";
+import { useParams } from "next/navigation";
+import { updateResumeData } from "@/db/actions";
+import { mergician } from "mergician";
 
-export default function ResumePage() {
+type ResumePageProps = {
+  title: string;
+  initialData: Partial<ResumeData>;
+  user?: User;
+};
+
+export default function ResumePage({
+  title,
+  initialData,
+  user,
+}: ResumePageProps) {
+  const params = useParams();
+
+  const resumeId = params.id as string;
+
   const defaultValues: ResumeData = {
     content: {
+      summary: "<p></p>",
       image: {
-        url: "",
+        url: user?.image ?? "",
         visible: true,
       },
       infos: {
-        email: "",
-        fullName: "",
+        email: user?.email ?? "",
+        fullName: user?.name ?? "",
         headline: "",
         location: "",
         phone: "",
         website: "",
       },
-      summary: "",
       certifications: [],
       educations: [],
       experiences: [],
@@ -51,7 +71,34 @@ export default function ResumePage() {
     },
   };
 
-  const methods = useForm<ResumeData>({ defaultValues });
+  const methods = useForm<ResumeData>({
+    defaultValues: mergician(defaultValues, initialData),
+  });
+
+  const data = methods.watch();
+  const debouncedData = useDebounce(JSON.stringify(data));
+
+  const shouldSave = useRef(false);
+
+  const handleSaveUpdates = useCallback(() => {
+    try {
+      if (!shouldSave.current) {
+        shouldSave.current = true;
+        return;
+      }
+
+      const updatedData = methods.getValues();
+
+      updateResumeData(resumeId, updatedData);
+    } catch (error) {
+      console.error(error);
+    }
+  }, [methods, resumeId]);
+
+  useEffect(() => {
+    handleSaveUpdates();
+  }, [debouncedData, handleSaveUpdates]);
+
   return (
     <FormProvider {...methods}>
       <main className="w-full h-screen overflow-hidden">
@@ -61,7 +108,7 @@ export default function ResumePage() {
           </ResizablePanel>
           <ResizableHandle withHandle />
           <ResizablePanel defaultSize={45}>
-            <ResumeContent />
+            <ResumeContent title={title} />
           </ResizablePanel>
           <ResizableHandle withHandle />
           <ResizablePanel minSize={20} maxSize={35} defaultSize={25}>
