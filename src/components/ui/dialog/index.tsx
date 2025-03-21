@@ -8,13 +8,13 @@ import {
   DialogTrigger,
 } from "./primitive";
 
-export type BaseDialogPros = {
+export type BaseDialogProps = {
   children?: ReactNode;
   open?: boolean;
   setOpen?: (open: boolean) => void;
 };
 
-type DialogPros = BaseDialogPros & {
+type DialogPros = BaseDialogProps & {
   title: string;
   description?: string;
   content: ReactNode;

@@ -1,6 +1,6 @@
 import { buildNextAuthOptions } from "@/app/api/auth/[...nextauth]/route";
 import ResumePage from "@/components/pages/dashboard/resume";
-import { getResumeById } from "@/db/actions";
+import { getResumeById } from "@/db/queries";
 import { getServerSession } from "next-auth";
 import { notFound, redirect } from "next/navigation";
 

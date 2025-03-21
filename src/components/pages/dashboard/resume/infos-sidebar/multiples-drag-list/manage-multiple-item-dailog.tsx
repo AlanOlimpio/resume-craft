@@ -1,6 +1,6 @@
 "use client";
 
-import { Dialog, BaseDialogPros } from "@/components/ui/dialog";
+import { Dialog, BaseDialogProps } from "@/components/ui/dialog";
 import { MultipleDragItemData, ResumeArrayKeys } from ".";
 import { FormProvider, useForm, useFormContext } from "react-hook-form";
 import { Fragment, useEffect, useMemo } from "react";
@@ -15,7 +15,7 @@ import { Badge } from "@/components/ui/badge";
 import { v4 as uuid } from "uuid";
 import { toast } from "sonner";
 
-type ManageMultipleItemDailogProps = BaseDialogPros & {
+type ManageMultipleItemDailogProps = BaseDialogProps & {
   data: MultipleDragItemData;
   setOpen: (open: boolean) => void;
   initialData: any;

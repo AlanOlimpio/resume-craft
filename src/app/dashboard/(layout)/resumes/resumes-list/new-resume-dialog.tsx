@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { BaseDialogPros, Dialog } from "@/components/ui/dialog";
+import { BaseDialogProps, Dialog } from "@/components/ui/dialog";
 import { InputField } from "@/components/ui/input/field";
 import { createResume } from "@/db/actions";
 
@@ -27,7 +27,7 @@ const resolver: Resolver<FormData> = async (values) => {
   };
 };
 
-export function NewResumeDialog(props: BaseDialogPros) {
+export function NewResumeDialog(props: BaseDialogProps) {
   const methods = useForm<FormData>({ resolver });
 
   async function onSubmit(data: FormData) {
