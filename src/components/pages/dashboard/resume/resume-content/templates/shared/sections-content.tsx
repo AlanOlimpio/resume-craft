@@ -190,7 +190,11 @@ export const ResumeSectionContent = ({
               >
                 <Element className="font-bold -mb-1.5">{language.name}</Element>
                 <Element>{language.description}</Element>
-                <LevelIndicator level={level} levelsColor={levelsColor} variant={levelIndicatorVariant} />
+                <LevelIndicator
+                  level={level}
+                  levelsColor={levelsColor}
+                  variant={levelIndicatorVariant}
+                />
               </div>
             );
           })}

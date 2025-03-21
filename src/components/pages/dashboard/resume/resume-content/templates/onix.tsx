@@ -54,7 +54,7 @@ export const Onix = ({ data }: BaseResumeProps) => {
         <div className="absolute inset-0 w-full h-full bg-resume-primary opacity-40 z-[2]" />
 
         <div className="z-[3] relative">
-          <div className="flex flex-col items-center text-center gap-2 z-10 mb-2">
+          <div className="flex flex-col items-center text-center gap-2 z-10 mb-2 relative max-w-[100%]">
             {content.image.url && content.image.visible && (
               <img src={content.image.url} className="w-36 h-36" />
             )}

@@ -21,7 +21,10 @@ export const Link = ({
     <Element
       href={href}
       target="_blank"
-      className={cn("flex items-center gap-1 w-max", href && "underline")}
+      className={cn(
+        "flex items-center gap-1 w-full break-all",
+        href && "underline"
+      )}
     >
       {withIcon && <LinkIcon size={14} className={iconColor} />}
       {children}
