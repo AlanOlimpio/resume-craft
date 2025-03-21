@@ -30,7 +30,7 @@ export function Dialog({
 }: DialogPros) {
   return (
     <DialogRoot open={open} onOpenChange={setOpen}>
-      {children && <DialogTrigger>{children}</DialogTrigger>}
+      {children && <DialogTrigger asChild>{children}</DialogTrigger>}
       <DialogContent>
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>

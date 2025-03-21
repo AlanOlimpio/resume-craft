@@ -12,11 +12,13 @@ type TooltipProps = {
   content: string | number | ReactNode;
 };
 
-export function Tooltip({ children, content }: TooltipProps) {
+export function Tooltip({ children, content, ...props }: TooltipProps) {
   return (
     <TooltipProvider>
       <TooltipRoot delayDuration={300}>
-        <TooltipTrigger asChild>{children}</TooltipTrigger>
+        <TooltipTrigger asChild {...props}>
+          {children}
+        </TooltipTrigger>
         <TooltipContent>{content}</TooltipContent>
       </TooltipRoot>
     </TooltipProvider>

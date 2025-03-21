@@ -6,14 +6,21 @@ import { db } from "./drizzle";
 import { resumes } from "./schema";
 import { buildNextAuthOptions } from "@/app/api/auth/[...nextauth]/route";
 import { revalidatePath } from "next/cache";
-import { cache } from "react";
-import { ResumeDto } from "./types";
 import { eq } from "drizzle-orm";
 
-export const createResume = async (title: string) => {
+const getUserIdOrThrow = async () => {
   const session = await getServerSession(buildNextAuthOptions);
 
   const userId = session?.user?.id;
+
+  if (!userId) throw new Error("Usuário não encontrado.");
+
+  return userId;
+};
+
+export const createResume = async (title: string) => {
+  const userId = await getUserIdOrThrow();
+
   const newResume = await db
     .insert(resumes)
     .values({ title, userId })
@@ -24,28 +31,8 @@ export const createResume = async (title: string) => {
   return newResume[0];
 };
 
-export const getResumeById = cache(
-  async (id: string): Promise<ResumeDto | undefined> => {
-    const session = await getServerSession(buildNextAuthOptions);
-
-    const userId = session?.user?.id;
-
-    if (!userId) return undefined;
-
-    const resume = await db.query.resumes.findFirst({
-      where: eq(resumes.id, id),
-    });
-
-    return resume;
-  }
-);
-
 export const updateResumeData = async (id: string, data: ResumeData) => {
-  const session = await getServerSession(buildNextAuthOptions);
-
-  const userId = session?.user?.id;
-
-  if (!userId) throw new Error("Usuário não encontrado.");
+  await getUserIdOrThrow();
 
   const updatedResume = await db
     .update(resumes)
@@ -56,4 +43,19 @@ export const updateResumeData = async (id: string, data: ResumeData) => {
   revalidatePath("/dashboard/resumes");
 
   return updatedResume[0];
+};
+
+export const deleteResume = async (id: string) => {
+  const userId = await getUserIdOrThrow();
+
+  const resume = await db.query.resumes.findFirst({
+    where: eq(resumes.id, id),
+  });
+
+  if (!resume) throw new Error("Currículo não encontrado.");
+  if (resume.userId !== userId) throw new Error("Usuário não autorizado.");
+
+  await db.delete(resumes).where(eq(resumes.id, id)).execute();
+
+  revalidatePath("/dashboard/resumes");
 };
