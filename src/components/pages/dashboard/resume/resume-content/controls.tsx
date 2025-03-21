@@ -1,11 +1,18 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { Tooltip } from "@/components/ui/tooltip";
+import { useResumeDownload } from "@/hooks/use-resume-download";
 import { cn } from "@/lib/utils";
 import { Download, RotateCcw, ZoomIn, ZoomOut } from "lucide-react";
 import { useControls } from "react-zoom-pan-pinch";
 
-export function TransformControls() {
+type NavigationHeaderProps = {
+  title: string;
+};
+
+export function TransformControls({ title }: NavigationHeaderProps) {
   const { zoomIn, zoomOut, centerView } = useControls();
+  const { handleDownloadResume } = useResumeDownload(title);
   const controls = [
     {
       icon: ZoomIn,
@@ -25,9 +32,10 @@ export function TransformControls() {
     {
       icon: Download,
       label: "Baixar PDF",
-      onClick: () => console.log("Download PDF"),
+      onClick: () => handleDownloadResume(),
     },
   ];
+
   return (
     <div
       className={cn(

@@ -32,10 +32,12 @@ export const BasicInfos = ({ infos, className }: BasicInfosProps) => {
   if (basicInfos.length === 0) return null;
 
   return (
-    <div className={cn(
-      "flex items-center justify-center gap-4 flex-wrap text-sm",
-      className,
-    )}>
+    <div
+      className={cn(
+        "flex items-center justify-center gap-4 flex-wrap text-sm",
+        className
+      )}
+    >
       {basicInfos.map((info) => {
         const Container = info.href ? "a" : "div";
         return (
@@ -43,7 +45,10 @@ export const BasicInfos = ({ infos, className }: BasicInfosProps) => {
             key={info.value}
             href={info?.href}
             target="_blank"
-            className={cn("flex items-center gap-2", info.href && "underline")}
+            className={cn(
+              "flex items-center gap-2 break-all",
+              info.href && "underline"
+            )}
           >
             <info.icon className="text-resume-primary" size={16} />
             <p>{info.value}</p>

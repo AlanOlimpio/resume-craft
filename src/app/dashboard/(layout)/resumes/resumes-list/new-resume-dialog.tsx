@@ -34,7 +34,6 @@ export function NewResumeDialog(props: BaseDialogProps) {
     try {
       const resume = await createResume(data.title);
       toast.success("Currículo criado com sucesso!");
-      console.log(resume);
       methods.reset();
     } catch (error) {
       console.error(error);

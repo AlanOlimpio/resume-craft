@@ -49,7 +49,7 @@ export const Eevee = ({ data }: BaseResumeProps) => {
 
   return (
     <div className="w-full h-full grid grid-cols-[1fr,250px]">
-      <section className="p-5">
+      <section className="p-6">
         <div className="flex items-center gap-4 mb-4">
           {content.image.url && content.image.visible && (
             <img src={content.image.url} className="w-36 h-36" />
