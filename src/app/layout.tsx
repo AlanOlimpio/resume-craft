@@ -7,6 +7,7 @@ import { Toaster } from "sonner";
 import SessionWrapper from "@/components/session-provider";
 import { getServerSession } from "next-auth";
 import { buildNextAuthOptions } from "./api/auth/[...nextauth]/route";
+import { ClientProviders } from "@/components/shared/client-providers";
 
 const fontSans = Nunito_Sans({ subsets: ["latin"], variable: "--font-sans" });
 const fontTitle = Nunito({ subsets: ["latin"], variable: "--font-title" });
@@ -30,17 +31,9 @@ export default async function RootLayout({
           fontSans.variable
         )}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <SessionWrapper session={session}>
-            {children}
-            <Toaster />
-          </SessionWrapper>
-        </ThemeProvider>
+        <SessionWrapper session={session}>
+          <ClientProviders>{children}</ClientProviders>
+        </SessionWrapper>
       </body>
     </html>
   );

@@ -12,7 +12,7 @@ type NavigationHeaderProps = {
 
 export function TransformControls({ title }: NavigationHeaderProps) {
   const { zoomIn, zoomOut, centerView } = useControls();
-  const { handleDownloadResume } = useResumeDownload(title);
+  const { handleDownloadResume, isLoading } = useResumeDownload(title);
   const controls = [
     {
       icon: ZoomIn,
@@ -33,6 +33,7 @@ export function TransformControls({ title }: NavigationHeaderProps) {
       icon: Download,
       label: "Baixar PDF",
       onClick: () => handleDownloadResume(),
+      disabled: isLoading,
     },
   ];
 
@@ -50,6 +51,7 @@ export function TransformControls({ title }: NavigationHeaderProps) {
             className="w-6 h-6 bg-transparent"
             size="icon"
             onClick={control.onClick}
+            disabled={control.disabled}
           >
             {<control.icon size={16} />}
           </Button>
