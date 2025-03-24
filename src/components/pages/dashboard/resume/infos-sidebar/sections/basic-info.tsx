@@ -21,7 +21,7 @@ export function BasicInfoSection() {
         <InputField label="Cabeçalho" name="content.infos.headline" />
         <InputField label="E-mail" name="content.infos.email" />
         <InputField label="Site" name="content.infos.website" />
-        <InputField label="Telefone" name="content.infos.phones" />
+        <InputField label="Telefone" name="content.infos.phone" />
         <InputField label="Localização" name="content.infos.location" />
       </div>
     </div>
