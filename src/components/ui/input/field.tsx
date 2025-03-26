@@ -1,4 +1,4 @@
-import { Controller, useFormContext } from "react-hook-form";
+import { Control, Controller, useFormContext } from "react-hook-form";
 import { Input } from ".";
 import React, { ComponentProps, ReactNode } from "react";
 import { FieldWrapper } from "../field-wrapper";
@@ -7,6 +7,7 @@ type InputFieldProps = ComponentProps<typeof Input> & {
   name: string;
   containerClassName?: string;
   extraContent?: (value: string) => ReactNode;
+  control?: Control<any, any>;
 };
 
 export function InputField({
@@ -14,13 +15,14 @@ export function InputField({
   name,
   containerClassName,
   extraContent,
+  control: customControl,
   ...props
 }: InputFieldProps) {
   const { control } = useFormContext();
 
   return (
     <Controller
-      control={control}
+      control={customControl ?? control}
       name={name}
       defaultValue={""}
       render={({ field, fieldState }) => (

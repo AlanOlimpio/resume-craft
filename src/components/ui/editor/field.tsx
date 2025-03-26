@@ -1,25 +1,27 @@
-import { Controller, useFormContext } from "react-hook-form";
+import { Control, Controller, useFormContext } from "react-hook-form";
 import { Editor } from ".";
-import { ComponentProps } from "react";
 import { FieldWrapper } from "../field-wrapper";
 type EditorFieldProps = {
   label: string;
   name: string;
   containerClassName?: string;
   required?: boolean;
+  className?: string;
+  control?: Control<any, any>;
 };
 
 export function EditorField({
   label,
   name,
   containerClassName,
+  control: customControl,
   ...props
 }: EditorFieldProps) {
   const { control } = useFormContext();
 
   return (
     <Controller
-      control={control}
+      control={customControl ?? control}
       name={name}
       defaultValue={""}
       render={({ field, fieldState }) => (
