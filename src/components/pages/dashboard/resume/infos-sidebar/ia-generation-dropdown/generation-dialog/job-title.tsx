@@ -6,6 +6,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm, useFormContext } from "react-hook-form";
 import { queryKeys } from "@/constants/query-keys";
 import { toast } from "sonner";
+import { v4 as uuid } from "uuid";
 
 type FormData = {
   jobTitle: string;
@@ -35,10 +36,15 @@ export function GenerateFromJobTitle({ onClose }: GenerateFromJobTitleProps) {
     mutationFn: ApiService.generateContentForJob,
     onSuccess: (data) => {
       const generation = JSON.parse(data.data) as GenerationData;
-
       setValue("content.infos.headline", generation.headline);
       setValue("content.summary", generation.summary);
-      setValue("content.skills", generation.skills);
+      const generationSkillsAddId = generation.skills.map((item) => {
+        return {
+          ...item,
+          id: uuid(),
+        };
+      });
+      setValue("content.skills", generationSkillsAddId);
 
       toast.success("Conteúdo gerado com sucesso!");
 

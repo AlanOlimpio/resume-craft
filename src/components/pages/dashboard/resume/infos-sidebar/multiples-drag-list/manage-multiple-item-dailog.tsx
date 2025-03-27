@@ -343,7 +343,6 @@ export function ManageMultipleItemDailog({
       open={open}
       setOpen={setOpen}
       title="Adicionar novo Item"
-      // description={data.formKey}
       content={
         <form
           onSubmit={methods.handleSubmit(onSubmit)}
