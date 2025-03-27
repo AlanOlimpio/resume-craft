@@ -24,7 +24,14 @@ async function generateContentForJob(payload: AIGenerationPayload) {
   return data;
 }
 
+async function fixContent(content: ResumeContentData) {
+  const { data } = await api.post("/generate/fix-content", { content });
+
+  return data;
+}
+
 export const ApiService = {
   getResumeUrl,
   generateContentForJob,
+  fixContent,
 };
