@@ -17,16 +17,22 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useState } from "react";
 import { GenerationDialog } from "./generation-dialog";
+import { useQuery } from "@tanstack/react-query";
+import { ApiService } from "@/services/api";
+import { queryKeys } from "@/constants/query-keys";
+import { Skeleton } from "@/components/ui/skeleton";
+import { BuyCreditsDialog } from "./buy-credits-dialog";
 
 export function IaGenerationDropdown() {
   const [generationMode, setGenerationMode] = useState<AIGenerationMode | null>(
     null
   );
+  const [showCreditsDialog, setShowCreditsDialog] = useState(false);
   const actions = [
     {
       label: "Comprar créditos",
       icon: CirclePercent,
-      onClick: () => console.log("Comprar créditos"),
+      onClick: () => setShowCreditsDialog(true),
     },
     {
       label: "Gerar conteúdo para vaga de emprego",
@@ -45,6 +51,11 @@ export function IaGenerationDropdown() {
     },
   ];
 
+  const { data: credits, isLoading } = useQuery({
+    queryKey: queryKeys.credits,
+    queryFn: ApiService.getCredits,
+  });
+
   return (
     <>
       <DropdownMenu>
@@ -59,7 +70,8 @@ export function IaGenerationDropdown() {
             Você possui{" "}
             <strong className="text-foreground inline-flex gap-0.5 items-center">
               <BadgeCent size={14} />
-              20 créditos
+              {isLoading ? <Skeleton className="w-5 h-5" /> : credits}{" "}
+              {credits === 1 ? "crédito" : "créditos"}
             </strong>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
@@ -75,6 +87,10 @@ export function IaGenerationDropdown() {
           ))}
         </DropdownMenuContent>
       </DropdownMenu>
+      <BuyCreditsDialog
+        open={showCreditsDialog}
+        setOpen={setShowCreditsDialog}
+      />
       {!!generationMode && (
         <GenerationDialog
           mode={generationMode}

@@ -35,3 +35,17 @@ export const getResumeById = cache(
     return resume;
   }
 );
+
+export const getUserCredits = cache(async () => {
+  const session = await getServerSession(buildNextAuthOptions);
+
+  const userId = session?.user?.id;
+
+  if (!userId) return 0;
+
+  const user = await db.query.users.findFirst({
+    where: eq(users.id, userId),
+  });
+
+  return user?.credits ?? 0;
+});

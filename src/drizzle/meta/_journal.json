@@ -15,6 +15,13 @@
       "when": 1742489294141,
       "tag": "0001_melted_silver_surfer",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1743109080479,
+      "tag": "0002_loose_devos",
+      "breakpoints": true
     }
   ]
 }
