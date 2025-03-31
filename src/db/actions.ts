@@ -4,9 +4,9 @@ import { getServerSession } from "next-auth";
 
 import { db } from "./drizzle";
 import { resumes, users } from "./schema";
-import { buildNextAuthOptions } from "@/app/api/auth/[...nextauth]/route";
 import { revalidatePath } from "next/cache";
 import { eq } from "drizzle-orm";
+import { buildNextAuthOptions } from "@/lib/auth";
 
 const getUserIdOrThrow = async () => {
   const session = await getServerSession(buildNextAuthOptions);

@@ -1,9 +1,9 @@
 import { getServerSession } from "next-auth";
 import { ResumesList } from "./resumes-list";
 import { redirect } from "next/navigation";
-import { buildNextAuthOptions } from "@/app/api/auth/[...nextauth]/route";
 import { Suspense } from "react";
 import { ResumesListSkeleton } from "./resumes-list/skeleton";
+import { buildNextAuthOptions } from "@/lib/auth";
 
 export default async function DashboardResumesPage() {
   const session = await getServerSession(buildNextAuthOptions);

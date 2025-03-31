@@ -26,6 +26,7 @@ export function SliderField({
           label={label}
           className={containerClassName}
           error={fieldState?.error}
+          ref={null}
         >
           <div className="flex items-center gap-4">
             <Slider

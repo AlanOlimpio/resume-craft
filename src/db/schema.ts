@@ -8,7 +8,7 @@ import {
   json,
   uuid,
 } from "drizzle-orm/pg-core";
-import type { AdapterAccountType } from "next-auth/adapters";
+import type { AdapterAccountType } from "@auth/core/adapters";
 
 export const users = pgTable("user", {
   id: text("id")

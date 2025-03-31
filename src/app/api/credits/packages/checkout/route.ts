@@ -1,6 +1,6 @@
-import { buildNextAuthOptions } from "@/app/api/auth/[...nextauth]/route";
 import { db } from "@/db/drizzle";
 import { users } from "@/db/schema";
+import { buildNextAuthOptions } from "@/lib/auth";
 import { stripe } from "@/lib/stripe";
 import { eq } from "drizzle-orm";
 import { getServerSession } from "next-auth";

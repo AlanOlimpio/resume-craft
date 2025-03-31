@@ -1,9 +1,9 @@
 import { db } from "@/db/drizzle";
 import { users } from "@/db/schema";
+import { buildNextAuthOptions } from "@/lib/auth";
 import { stripe } from "@/lib/stripe";
 import { eq } from "drizzle-orm";
 import { getServerSession } from "next-auth";
-import { buildNextAuthOptions } from "../../auth/[...nextauth]/route";
 
 export const POST = async (request: Request) => {
   const { currentPathname } = await request.json();
