@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Nunito, Nunito_Sans } from "next/font/google";
 import "@/styles/globals.css";
 import { cn } from "@/lib/utils";
-import { ThemeProvider } from "@/components/shared/theme-provider";
-import { Toaster } from "sonner";
+
 import SessionWrapper from "@/components/session-provider";
 import { getServerSession } from "next-auth";
 import { buildNextAuthOptions } from "./api/auth/[...nextauth]/route";
@@ -14,6 +13,9 @@ const fontTitle = Nunito({ subsets: ["latin"], variable: "--font-title" });
 
 export const metadata: Metadata = {
   title: "ResumeCraft",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default async function RootLayout({
