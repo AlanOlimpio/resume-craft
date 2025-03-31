@@ -57,7 +57,6 @@ const getCheckoutUrl = async (priceId: string, currentPathname: string) => {
     "/credits/packages/checkout",
     { priceId, currentPathname }
   );
-  console.log(data);
   return data.url;
 };
 

@@ -1,6 +1,8 @@
 import { formatTailwindHTML } from "@/lib/utils";
 
 import puppeteer from "puppeteer";
+import puppeteerCore from "puppeteer-core";
+import chromium from "@sparticuz/chromium";
 
 export const POST = async (request: Request) => {
   try {
@@ -16,12 +18,21 @@ export const POST = async (request: Request) => {
 
     let browser = null;
 
-    browser = await puppeteer.launch();
+    if (process.env.NODE_ENV === "development") {
+      browser = await puppeteer.launch();
+    } else {
+      browser = await puppeteerCore.launch({
+        args: chromium.args,
+        defaultViewport: chromium.defaultViewport,
+        executablePath: await chromium.executablePath(),
+        headless: chromium.headless,
+      });
+    }
 
     const page = await browser.newPage();
 
     await page.setContent(formatTailwindHTML(html, structure));
-
+    // @ts-expect-error
     const bodyHeight = await page.evaluate(() => {
       return document.documentElement.scrollHeight;
     });
