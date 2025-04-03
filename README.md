@@ -6,11 +6,11 @@ O objetivo deste projeto foi aprender a criar uma aplicação Next.js 14, TypeSc
 
 |Login|
 |-------|
-|<img src="login.gif" alt="login">|
+|<img src="login.webp" alt="login">|
 
 
 
-|Download |
+|Dashboard |
 |-------|
-|<img src="download.gif" alt="download">|
+|<img src="dashboard.webp" alt="dashboard">|
 

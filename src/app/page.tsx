@@ -1,13 +1,13 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import Logo from "@/assets/logo.svg";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Metadata } from "next";
+import Logo from "@/components/ui/logo";
 
 export const metadata: Metadata = {
   description:
-    "Crie currículos de forma rápida e fácil com nossos modelos gratuitos.",
+    "Crie currículos de forma rápida e fácil com nossos modelos de currículos gratuitos.",
 };
 
 export default function Home() {
@@ -15,8 +15,7 @@ export default function Home() {
     <main className="w-full h-screen bg-gradient-to-tl from-muted flex flex-col md:justify-center p-6 overflow-x-hidden">
       <div className="w-full max-w-[1200px] mx-auto flex flex-col md:flex-row gap-8 md:gap-12">
         <div>
-          <Logo className="w-full max-w-[100px] mb-8" />
-
+          <Logo className="mb-4" />
           <h1 className="font-title font-bold text-5xl max-w-[500px]">
             Um criador de currículos gratuito e fácil de usar
           </h1>

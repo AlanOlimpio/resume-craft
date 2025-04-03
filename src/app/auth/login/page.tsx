@@ -1,12 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import Logo from "@/assets/logo.svg";
-// import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Chrome, Github } from "lucide-react";
 import { ModeToggle } from "@/components/shared/theme-toggle";
 import { signIn } from "next-auth/react";
+import Logo from "@/components/ui/logo";
 
 type Providers = "github" | "google";
 
@@ -32,7 +31,7 @@ export default function LoginPage() {
 
       <form className="p-10 flex justify-center flex-col" action={handleLogin}>
         <div className="flex items-center justify-between mb-10">
-          <Logo className="max-w-[90px]" />
+          <Logo />
 
           <ModeToggle />
         </div>
