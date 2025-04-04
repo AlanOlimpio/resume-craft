@@ -13,6 +13,7 @@ import {
 import { languagesOptions } from "../../../structure-sidebar/sections/language";
 import { mergician } from "mergician";
 import { queryKeys } from "@/constants/query-keys";
+import { Loader2 } from "lucide-react";
 
 type FormData = {
   language: ResumeLanguages;
@@ -97,6 +98,7 @@ export function GenerateTranslation({ onClose }: GenerateTranslationProps) {
       />
 
       <Button className="w-max ml-auto" type="submit" disabled={isPending}>
+        {isPending && <Loader2 className="animate-spin" />}
         Gerar conteúdo
       </Button>
     </form>

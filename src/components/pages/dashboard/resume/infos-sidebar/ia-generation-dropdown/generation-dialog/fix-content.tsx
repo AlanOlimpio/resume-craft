@@ -5,6 +5,7 @@ import { useForm, useFormContext } from "react-hook-form";
 import { toast } from "sonner";
 import { mergician } from "mergician";
 import { queryKeys } from "@/constants/query-keys";
+import { Loader2 } from "lucide-react";
 
 type GenerateToFixContentProps = {
   onClose: () => void;
@@ -51,6 +52,7 @@ export function GenerateToFixContent({ onClose }: GenerateToFixContentProps) {
       <p>Isso pode levar alguns segundos, aguarde o resultado.</p>
 
       <Button className="w-max ml-auto" type="submit" disabled={isPending}>
+        {isPending && <Loader2 className="animate-spin" />}
         Gerar conteúdo
       </Button>
     </form>

@@ -7,6 +7,7 @@ import { useForm, useFormContext } from "react-hook-form";
 import { queryKeys } from "@/constants/query-keys";
 import { toast } from "sonner";
 import { v4 as uuid } from "uuid";
+import { Loader2 } from "lucide-react";
 
 type FormData = {
   jobTitle: string;
@@ -75,6 +76,7 @@ export function GenerateFromJobTitle({ onClose }: GenerateFromJobTitleProps) {
       />
 
       <Button className="w-max ml-auto" type="submit" disabled={isPending}>
+        {isPending && <Loader2 className="animate-spin" />}
         Gerar conteúdo
       </Button>
     </form>
