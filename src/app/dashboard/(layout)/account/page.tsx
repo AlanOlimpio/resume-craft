@@ -52,11 +52,12 @@ export default function DashboardAccountPage() {
           inteligência artificial.
         </p>
 
-        <div className="flex items-center gap-4 mt-4">
+        <div className="flex items-center gap-4 mt-4 flex-wrap md:flex-nowrap">
           <Button
             variant="secondary"
             disabled={isLoading}
             onClick={() => setShowCreditsModal(true)}
+            className="w-full md:w-auto"
           >
             Adicionar Créditos
           </Button>
@@ -64,6 +65,7 @@ export default function DashboardAccountPage() {
             variant="outline"
             disabled={isLoading || isPending}
             onClick={() => handleOpenTransactions()}
+            className="w-full md:w-auto"
           >
             Minhas transações
           </Button>

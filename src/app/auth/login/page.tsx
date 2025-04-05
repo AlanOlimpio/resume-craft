@@ -31,7 +31,7 @@ export default function LoginPage() {
 
       <form className="p-10 flex justify-center flex-col" action={handleLogin}>
         <div className="flex items-center justify-between mb-10">
-          <Logo />
+          <Logo className="!w-[180px]" />
 
           <ModeToggle />
         </div>

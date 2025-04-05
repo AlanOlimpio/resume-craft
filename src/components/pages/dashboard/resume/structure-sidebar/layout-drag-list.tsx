@@ -99,8 +99,8 @@ export function LayoutDragList({ title, fields }: LayoutDragListProps) {
                 {...provided.dragHandleProps}
                 className="flex items-center gap-1 bg-foreground p-1 rounded"
               >
-                <GripVertical className="w-4 h-4 min-w4 text-background" />
-                <p className="text-accent text-xs font-semibold">
+                <GripVertical className="w-4 h-4 min-w-5 text-background" />
+                <p className="text-accent text-xs font-semibold break-all">
                   {labels[field.key][language]}
                 </p>
               </div>

@@ -6,7 +6,7 @@ export const ResumesListSkeleton = () => {
       {Array.from({ length: 8 }).map((_, index) => (
         <Skeleton
           key={`resume-skeleton-${index}`}
-          className="w-full h-[300px]"
+          className="w-full max-md:h-[200px] h-[300px]"
         />
       ))}
     </section>

@@ -1,12 +1,5 @@
 "use client";
-import {
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
-} from "@/components/ui/resizable";
-import { InfosSidebar } from "./infos-sidebar";
-import { ResumeContent } from "./resume-content";
-import { StructureSidebar } from "./structure-sidebar";
+
 import { FormProvider, useForm } from "react-hook-form";
 import { User } from "next-auth";
 import { useCallback, useEffect, useRef } from "react";
@@ -14,6 +7,9 @@ import { useDebounce } from "@/hooks/use-debounce";
 import { useParams } from "next/navigation";
 import { updateResumeData } from "@/db/actions";
 import { mergician } from "mergician";
+
+import { PanelGroup } from "./structure-sidebar/panel-group";
+import { MenuMobile } from "./structure-sidebar/menu-mobile";
 
 type ResumePageProps = {
   title: string;
@@ -102,19 +98,8 @@ export default function ResumePage({
   return (
     <FormProvider {...methods}>
       <main className="w-full h-screen overflow-hidden">
-        <ResizablePanelGroup direction="horizontal" className="w-full h-full">
-          <ResizablePanel minSize={20} maxSize={40} defaultSize={30}>
-            <InfosSidebar />
-          </ResizablePanel>
-          <ResizableHandle withHandle />
-          <ResizablePanel defaultSize={45}>
-            <ResumeContent title={title} />
-          </ResizablePanel>
-          <ResizableHandle withHandle />
-          <ResizablePanel minSize={20} maxSize={35} defaultSize={25}>
-            <StructureSidebar />
-          </ResizablePanel>
-        </ResizablePanelGroup>
+        <MenuMobile />
+        <PanelGroup title={title} />
       </main>
     </FormProvider>
   );

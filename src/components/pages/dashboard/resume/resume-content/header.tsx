@@ -14,7 +14,7 @@ export function NavigationHeader({ title }: NavigationHeaderProps) {
   const { handleDownloadResume, isLoading } = useResumeDownload(title);
   return (
     <header className="absolute w-full left-0 top-0 z-10 p-2 bg-background border-b border-muted flex items-center justify-between gap-2  flex-wrap">
-      <div className="flex items-center gap-2 justify-between flex-wrap">
+      <div className="flex items-center gap-2 justify-between flex-wrap relative">
         <Tooltip content="Voltar ao painel">
           <Link href="/dashboard/resumes" passHref>
             <Button

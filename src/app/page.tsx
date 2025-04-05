@@ -15,7 +15,7 @@ export default function Home() {
     <main className="w-full h-screen bg-gradient-to-tl from-muted flex flex-col md:justify-center p-6 overflow-x-hidden">
       <div className="w-full max-w-[1200px] mx-auto flex flex-col md:flex-row gap-8 md:gap-12">
         <div>
-          <Logo className="mb-4" />
+          <Logo className="mb-4 !w-[180px]" />
           <h1 className="font-title font-bold text-5xl max-w-[500px]">
             Um criador de currículos gratuito e fácil de usar
           </h1>

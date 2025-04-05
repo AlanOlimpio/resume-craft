@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { Button } from "@/components/ui/button";
 import { ResumeDto } from "@/db/types";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -19,9 +18,9 @@ export function ResumesCardButton({
   return (
     <div
       className={cn(
-        "text-foreground  w-full h-[300px] bg-white hover:bg-gray-200 rounded border border-muted-foreground/20",
+        "text-foreground  w-full  max-md:h-[200px] h-[300px] bg-white hover:bg-gray-200 rounded border border-muted-foreground/20",
         "flex items-center justify-center relative outline-none  overflow-hidden",
-        "dark:bg-muted hover:brightness-105 dark:hover:brightness-125 transition-all"
+        "dark:bg-muted hover:brightness-105 dark:hover:brightness-125 transition-all cursor-pointer"
       )}
     >
       {icon}
