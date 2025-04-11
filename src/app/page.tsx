@@ -57,35 +57,12 @@ export default function Home() {
           </div>
           <div className="w-full  px-4 bg-muted rounded shadow-md">
             <div className="flex flex-col items-center p-6 gap-4  text-center">
-              <BadgeCheck size={32} />
-              <h2 className="text-xl font-semibold text-muted-foreground">
-                Gratuito
-              </h2>
-              <p className="text-muted-foreground text-lg">
-                Crie, edite e baixe seu currículo sem custos.
-              </p>
-            </div>
-          </div>
-          <div className="w-full  px-4 bg-muted rounded shadow-md">
-            <div className="flex flex-col items-center p-6 gap-4  text-center">
               <FilePenLine size={32} />
               <h2 className="text-xl font-semibold text-muted-foreground">
                 Edição Simples
               </h2>
               <p className="text-muted-foreground text-lg">
                 Personalize seu currículo diretamente no navegador.
-              </p>
-            </div>
-          </div>
-          <div className="w-full  px-4 bg-muted rounded shadow-md">
-            <div className="flex flex-col items-center p-6 gap-4  text-center">
-              <FileDown size={32} />
-              <h2 className="text-xl font-semibold text-muted-foreground">
-                Formatos em PDF
-              </h2>
-              <p className="text-muted-foreground text-lg">
-                Disponível para download em PDF para facilitar o envio e
-                impressão.
               </p>
             </div>
           </div>
